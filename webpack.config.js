@@ -6,7 +6,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: './src/main.ts',
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, './dist'),
     filename: '[name].js'
   },
   resolve: {
@@ -60,8 +60,15 @@ module.exports = {
 module.exports.plugins = (module.exports.plugins || []).concat([
   new HtmlWebpackPlugin({
     filename: 'index.html',
-    template: 'index.html',
-    inject: true
+    template: 'src/index.html',
+    inject: true,
+    minify: {
+      removeComments: true,
+      collapseWhitespace: true,
+      removeAttributeQuotes: true
+      // more options:
+      // https://github.com/kangax/html-minifier#options-quick-reference
+    }
   })
 ])
 
